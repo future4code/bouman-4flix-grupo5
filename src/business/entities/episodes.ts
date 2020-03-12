@@ -1,12 +1,10 @@
-export class Movie {
+export class Episodes {
     constructor(
         private id: string,
         private title: string,
-        private releaseDate: Date,
         private synopsis: string,
         private link: string,
-        private length: number,
-        private image: string          
+        private length: number,         
     ) {}
 
     public getId(): string {
@@ -23,14 +21,6 @@ export class Movie {
 
     public setTitle(title: string): void {
         this.title = title;
-    }
-
-    public getReleaseDate(): Date {
-        return this.releaseDate;
-    }
-
-    public setReleaseDate(releaseDate: Date): void {
-        this.releaseDate = releaseDate;
     }
 
     public getSynopsis(): string {
@@ -55,13 +45,5 @@ export class Movie {
 
     public setLength(length: number): void {
         this.length = length;
-    }
-
-    public getImage(): string {
-        return this.image;
-    }
-
-    public setImage(image: string): void {
-        this.image = image;
     }
 }

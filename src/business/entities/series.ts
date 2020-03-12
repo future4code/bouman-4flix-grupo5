@@ -1,14 +1,11 @@
-export class Movie {
+export class Series {
     constructor(
         private id: string,
         private title: string,
         private releaseDate: Date,
         private synopsis: string,
-        private link: string,
-        private length: number,
         private image: string          
     ) {}
-
     public getId(): string {
         return this.id;
     }
@@ -39,22 +36,6 @@ export class Movie {
 
     public setSynopsis(synopsis: string): void {
         this.synopsis = synopsis;
-    }
-
-    public getLink(): string {
-        return this.link;
-    }
-
-    public setLink(link: string): void {
-        this.link = link;
-    }
-
-    public getLength(): number {
-        return this.length;
-    }
-
-    public setLength(length: number): void {
-        this.length = length;
     }
 
     public getImage(): string {
