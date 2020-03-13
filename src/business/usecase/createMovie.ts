@@ -1,9 +1,9 @@
-import { movieDB } from "../../data/movieDataBase";
+import { MovieDB } from "../../data/movieDataBase";
 import { Movie } from "../entities/movie";
 import { v4 } from "uuid";
 
 export class CreateMoviesUC {
-    constructor(private db: movieDB) {}
+    constructor(private db: MovieDB) {}
   
     public async execute(input: CreateMovieUCInput): Promise<CreateMovieUCOutput> {
       const id = v4();

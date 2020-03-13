@@ -1,7 +1,7 @@
-import { movieDB } from "../../data/movieDataBase";
+import { MovieDB } from "../../data/movieDataBase";
 
 export class GetMoviesUC {
-    constructor(private movieDB: movieDB) {}
+    constructor(private movieDB: MovieDB) {}
     public async execute(): Promise<GetMoviesUCOutput> {
     const movies = await this.movieDB.getAllMovies();
     return {

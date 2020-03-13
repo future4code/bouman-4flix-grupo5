@@ -1,7 +1,7 @@
 import { BaseDB } from "./baseDataBase"
 import { Movie } from "../business/entities/movie";
 
-export class movieDB extends BaseDB {
+export class MovieDB extends BaseDB {
     private movieTableName = "movies";
 
     public async createMovie(movie: Movie): Promise<void>{
