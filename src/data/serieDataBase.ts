@@ -4,7 +4,7 @@ import { Series } from "../business/entities/series";
 export class serieDB extends BaseDB {
     private serieTableName = "serie";
 
-    public async createMovie(serie: Series): Promise<void>{
+    public async createSerie(serie: Series): Promise<void>{
         let query = serie.getImage()
         ? `
         INSERT INTO ${
@@ -50,12 +50,10 @@ export class serieDB extends BaseDB {
         return result[0].map((res: any) => this.mapDbSerieToSerie(res)!);
     }  
 
-    public async getMovieById(id: string): Promise<Series | undefined> {
+    public async getSerieById(id: string): Promise<Series | undefined> {
         const result = await this.connection.raw(`
     SELECT * FROM ${this.serieTableName} WHERE id='${id}'
         `);
         return this.mapDbSerieToSerie(result[0][0]);
-      }
-    
-    
+      } 
 }

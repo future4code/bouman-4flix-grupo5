@@ -5,8 +5,7 @@ export class movieDB extends BaseDB {
     private movieTableName = "film";
 
     public async createMovie(movie: Movie): Promise<void>{
-        let query = movie.getImage()
-        ? `
+         `
         INSERT INTO ${
             this.movieTableName
           } (id, title, content, type, image, userId)
@@ -19,18 +18,6 @@ export class movieDB extends BaseDB {
           '${movie.getLength()}'
           '${movie.getImage()}'
           );`
-          : `
-          INSERT INTO ${this.movieTableName} (id, title, content, type, userId)
-          VALUES(
-            '${movie.getId()}',
-            '${movie.getTitle()}',
-            '${movie.getReleaseDate()}',
-            '${movie.getSynopsis()}',
-            '${movie.getLink()}',
-            '${movie.getLength()}'
-          );`;
-
-          await this.connection.raw(query);
 
     }
 
@@ -59,7 +46,7 @@ export class movieDB extends BaseDB {
 
     public async getMovieById(id: string): Promise<Movie | undefined> {
         const result = await this.connection.raw(`
-    SELECT * FROM ${this.movieTableName} WHERE id='${id}'
+           SELECT * FROM ${this.movieTableName} WHERE id='${id}'
         `);
         return this.mapDbMovieToMovie(result[0][0]);
       }
