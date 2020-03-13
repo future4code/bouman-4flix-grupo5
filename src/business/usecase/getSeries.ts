@@ -1,5 +1,3 @@
-import { BaseDB } from "../../data/baseDataBase";
-import { Series } from "../../business/entities/series";
 import { SerieDB } from "../../data/serieDataBase";
 
 export class GetSeriessUC {
