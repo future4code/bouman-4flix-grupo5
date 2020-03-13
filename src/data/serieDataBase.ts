@@ -1,7 +1,7 @@
-import {BaseDB} from "./baseDataBase"
+import { BaseDB } from "./baseDataBase";
 import { Series } from "../business/entities/series";
 
-export class serieDB extends BaseDB {
+export class SerieDB extends BaseDB {
     private serieTableName = "serie";
 
     public async createSerie(serie: Series): Promise<void>{

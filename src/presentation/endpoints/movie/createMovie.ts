@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { CreateMoviesUC } from "../../../business/usecase/createMovie";
-import { movieDB } from "../../../data/movieDataBase";
+import { MovieDB } from "../../../data/movieDataBase";
 
 
 export const createMoviesEndpoint = async(req:Request, res:Response) => {
     try{
-        const createMoviesUC = new CreateMoviesUC(new movieDB());
+        const createMoviesUC = new CreateMoviesUC(new MovieDB());
         const result = await createMoviesUC.execute({
             title: req.body.title,
             releaseDate: req.body.releaseDate,

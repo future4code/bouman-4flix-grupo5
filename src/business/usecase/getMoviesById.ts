@@ -1,16 +1,20 @@
-import { movieDB } from "../../data/movieDataBase";
+import { MovieDB } from "../../data/movieDataBase";
 
 export class GetMoviesByIdUC {
-    constructor(private db: movieDB) {}
+    constructor(private db: MovieDB) {}
 
     public async execute(input: GetFilmsByIdUCInput): Promise<GetFilmsByIdUCOutput>{
 
         const movie = await this.db.getMovieById(input.id);
 
+        if(!movie) {
+            throw new Error("Movie not found")
+        }
+
         return{
             id: movie.getId(),
             title: movie.getTitle(),
-            releaseDate: movie.releaseDate(),
+            releaseDate: movie.getReleaseDate(),
             synopsis: movie.getSynopsis(),
             link: movie.getLink(),
             length: movie.getLength(),

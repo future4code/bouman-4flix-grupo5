@@ -1,9 +1,9 @@
 import { Series } from "../entities/series";
 import { v4 } from "uuid";
-import { serieDB } from "../../data/serieDataBase";
+import { SerieDB } from "../../data/serieDataBase";
 
 export class CreateSeriesUC {
-    constructor(private db: serieDB) { }
+    constructor(private db: SerieDB) { }
 
     public async execute(input: CreateSeriesUCInput): Promise<CreateSeriesUCOutput> {
         const id = v4();
