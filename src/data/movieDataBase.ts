@@ -1,0 +1,66 @@
+import { BaseDB } from "./baseDataBase"
+import { Movie } from "../business/entities/movie";
+
+export class movieDB extends BaseDB {
+    private movieTableName = "film";
+
+    public async createMovie(movie: Movie): Promise<void>{
+        let query = movie.getImage()
+        ? `
+        INSERT INTO ${
+            this.movieTableName
+          } (id, title, content, type, image, userId)
+          VALUES(
+          '${movie.getId()}',
+          '${movie.getTitle()}',
+          '${movie.getReleaseDate()}',
+          '${movie.getSynopsis()}',
+          '${movie.getLink()}',
+          '${movie.getLength()}'
+          '${movie.getImage()}'
+          );`
+          : `
+          INSERT INTO ${this.movieTableName} (id, title, content, type, userId)
+          VALUES(
+            '${movie.getId()}',
+            '${movie.getTitle()}',
+            '${movie.getReleaseDate()}',
+            '${movie.getSynopsis()}',
+            '${movie.getLink()}',
+            '${movie.getLength()}'
+          );`;
+
+          await this.connection.raw(query);
+
+    }
+
+    private mapDbMovieToMovie(input?: any): Movie | undefined {
+        return (
+          input &&
+          new Movie(
+            input.id,
+            input.title,
+            input.releaseDate,
+            input.synopsis,
+            input.link,
+            input.length,
+            input.image
+          )
+        );
+      }
+
+
+    public async getAllMovies(): Promise<Movie[]>{
+        const result = await this.connection.raw(`
+            SELECT * FROM ${this.movieTableName}
+        `)
+        return result[0].map((res: any) => this.mapDbMovieToMovie(res)!);
+    }  
+
+    public async getMovieById(id: string): Promise<Movie | undefined> {
+        const result = await this.connection.raw(`
+    SELECT * FROM ${this.movieTableName} WHERE id='${id}'
+        `);
+        return this.mapDbMovieToMovie(result[0][0]);
+      }
+}
