@@ -1,7 +1,7 @@
 import knex from "knex";
 
 export abstract class BaseDB {
-    private connection = knex({
+      protected connection = knex({
       client: "mysql",
       connection: {
         host: "<HOST>",
